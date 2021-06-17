@@ -12,12 +12,17 @@ namespace v0617_
 {
     public partial class Form1 : Form
     {
-        int vx = -10;
-        int vy = -10;
+        int vx = rand.Next(-10,11);
+        int vy = rand.Next(-10,11);
         int score = 100;
+        static Random rand = new Random();
+
         public Form1()
         {
             InitializeComponent();
+
+            label1.Left = rand.Next(ClientSize.Width-label1.Width);
+            label1.Top = rand.Next(ClientSize.Height-label1.Height);
         }
         private void label2_Click(object sender, EventArgs e)
         {
@@ -50,6 +55,46 @@ namespace v0617_
             {
                 vy = -Math.Abs(vy);
             }
+
+            label4.Left += vx;
+            label4.Top += vy;
+
+            if (label4.Left < 0)
+            {
+                vx = Math.Abs(vx);
+            }
+            if (label4.Top < 0)
+            {
+                vy = Math.Abs(vy);
+            }
+            if (label4.Right > ClientSize.Width)
+            {
+                vx = -Math.Abs(vx);
+            }
+            if (label4.Bottom > ClientSize.Height)
+            {
+                vy = -Math.Abs(vy);
+            }
+
+            label5.Left += vx;
+            label5.Top += vy;
+
+            if (label5.Left < 0)
+            {
+                vx = Math.Abs(vx);
+            }
+            if (label5.Top < 0)
+            {
+                vy = Math.Abs(vy);
+            }
+            if (label5.Right > ClientSize.Width)
+            {
+                vx = -Math.Abs(vx);
+            }
+            if (label5.Bottom > ClientSize.Height)
+            {
+                vy = -Math.Abs(vy);
+            }
             score--;
             label2.Text = $"Score{score}";
 
@@ -69,6 +114,11 @@ namespace v0617_
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
             
         }
